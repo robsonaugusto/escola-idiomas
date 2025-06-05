@@ -1,0 +1,59 @@
+.student-card {
+  margin: 2rem;
+  padding: 1.5rem;
+  background-color: #fefefe;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+
+    th {
+      font-weight: 600;
+      background-color: #f5f5f5;
+      color: #444;
+    }
+
+    td, th {
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+    }
+  }
+}

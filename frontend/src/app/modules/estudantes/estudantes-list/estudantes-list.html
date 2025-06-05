@@ -1,0 +1,71 @@
+<mat-card class="student-card">
+  <mat-card-header>
+    <mat-card-title>Gestão de Estudantes</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addNewStudent()">
+      <mat-icon>person_add</mat-icon>
+      Adicionar Estudante
+    </button>    
+  </mat-card-actions>
+
+  <mat-card-content>
+    <h3>Lista de Estudantes</h3>
+
+    <table mat-table [dataSource]="students" class="mat-elevation-z8">
+
+      <!-- Nome -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let student"> {{ student.name }} </td>
+      </ng-container>
+
+      <!-- WhatsApp -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> WhatsApp </th>
+        <td mat-cell *matCellDef="let student"> {{ student.phone }} </td>
+      </ng-container>
+
+      <!-- E-mail -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E-mail </th>
+        <td mat-cell *matCellDef="let student"> {{ student.email }} </td>
+      </ng-container>
+
+      <!-- CPF -->
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> CPF </th>
+        <td mat-cell *matCellDef="let student"> {{ student.cpf }} </td>
+      </ng-container>
+
+      <!-- Ações -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let student">
+          <button mat-icon-button color="primary" (click)="editStudent(student)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="scheduleStudent(student)">
+            <mat-icon>date_range</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Renderização das linhas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <div class="footer-links">
+      <a href="#">Contato</a>
+      <a href="#">Termos de Serviço</a>
+      <a href="#">Política de Privacidade</a>
+    </div>
+  </mat-card-footer>
+</mat-card>
