@@ -17,14 +17,7 @@
     <!-- Campo Data de Nascimento -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Data de Nascimento</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        [(ngModel)]="student.dataNascimento"
-        name="dataNascimento"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <input matInput name="dataNascimento" [(ngModel)]="student.dataNascimento" required />      
     </mat-form-field>
 
     <!-- Campo CEP -->

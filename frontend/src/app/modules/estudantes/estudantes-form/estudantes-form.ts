@@ -5,9 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter } from '@angular/material/core';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-estudantes-form',
@@ -20,22 +17,14 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCardModule
-  ],
-  providers: [
-    MatDatepickerModule,           // necessário
-    MatNativeDateModule,           // necessário
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // opcional: define o formato da data
+    MatInputModule
   ]
 })
 export class EstudantesFormComponent {
   student: any = {
     cpf: '',
     nome: '',
-    dataNascimento: null,
+    dataNascimento: '',
     cep: '',
     logradouro: '',
     numeroCasa: '',
@@ -48,15 +37,11 @@ export class EstudantesFormComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EstudantesFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private adapter: DateAdapter<any> // força a injeção do DateAdapter
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data?.student) {
       this.student = { ...data.student };
     }
-
-    // Define o idioma aqui também (pt-BR)
-    this.adapter.setLocale('pt-BR');
   }
 
   onSubmit() {
@@ -70,6 +55,6 @@ export class EstudantesFormComponent {
   }
 
   public isFormValid(): boolean {
-    return !!this.student.name && !!this.student.cpf;
+    return !!this.student.nome && !!this.student.cpf;
   }
 }
