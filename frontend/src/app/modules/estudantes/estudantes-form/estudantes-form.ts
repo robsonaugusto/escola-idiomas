@@ -34,7 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 export class EstudantesFormComponent {
   student: any = {
     cpf: '',
-    name: '',
+    nome: '',
     dataNascimento: null,
     cep: '',
     logradouro: '',
@@ -42,7 +42,7 @@ export class EstudantesFormComponent {
     bairro: '',
     estado: '',
     cidade: '',
-    phone: '',
+    telefone: '',
     email: ''
   };
 

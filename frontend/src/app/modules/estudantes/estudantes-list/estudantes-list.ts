@@ -11,8 +11,8 @@ import { EstudantesFormComponent } from '../estudantes-form/estudantes-form';
 
 interface Student {
   id?: number;
-  name: string;
-  phone: string;
+  nome: string;
+  telefone: string;
   cpf: string;
   email: string;
   dataNascimento?: string;
@@ -45,28 +45,28 @@ interface Student {
   ]
 })
 export class EstudantesListComponent {
-  displayedColumns: string[] = ['name', 'phone', 'email', 'cpf', 'actions'];
+  displayedColumns: string[] = ['nome', 'telefone', 'email', 'cpf', 'actions'];
   students: Student[] = [
     { 
       id: 1, 
-      name: 'Red Johnson', 
-      phone: '+55 41 11111-1111', 
+      nome: 'Red Johnson', 
+      telefone: '+55 41 11111-1111', 
       cpf: '111.111.111-11', 
       email: 'red@email.com',
       dataNascimento: '1990-01-01'
     },
     { 
       id: 2, 
-      name: 'Carlos Silva', 
-      phone: '+55 41 10336-1038', 
+      nome: 'Carlos Silva', 
+      telefone: '+55 41 10336-1038', 
       cpf: '222.222.222-22', 
       email: 'carlos@email.com',
       dataNascimento: '1985-05-15'
     },
     { 
       id: 3, 
-      name: 'Maria Garcia', 
-      phone: '+55 41 11333-11337', 
+      nome: 'Maria Garcia', 
+      telefone: '+55 41 11333-11337', 
       cpf: '333.333.333-33', 
       email: 'maria@email.com',
       dataNascimento: '1992-11-20'
@@ -87,16 +87,16 @@ export class EstudantesListComponent {
   }
 
   deleteStudent(student: Student): void {
-    const confirmDelete = confirm(`Deseja realmente excluir o estudante ${student.name}?`);
+    const confirmDelete = confirm(`Deseja realmente excluir o estudante ${student.nome}?`);
     
     if (confirmDelete) {
       this.students = this.students.filter(s => s.id !== student.id);
-      this.showSnackbar(`Estudante ${student.name} excluído com sucesso!`);
+      this.showSnackbar(`Estudante ${student.nome} excluído com sucesso!`);
     }
   }
 
   scheduleStudent(student: Student): void {
-    this.showSnackbar(`Agendamento para ${student.name} criado com sucesso!`);
+    this.showSnackbar(`Agendamento para ${student.nome} criado com sucesso!`);
     // Implemente a lógica de agendamento aqui
   }
 
@@ -122,8 +122,8 @@ export class EstudantesListComponent {
 
   private createEmptyStudent(): Student {
     return {
-      name: '',
-      phone: '',
+      nome: '',
+      telefone: '',
       cpf: '',
       email: '',
       dataNascimento: '',
@@ -139,14 +139,14 @@ export class EstudantesListComponent {
   private addStudent(student: Student): void {
     student.id = this.generateId();
     this.students = [...this.students, student];
-    this.showSnackbar(`Estudante ${student.name} adicionado com sucesso!`);
+    this.showSnackbar(`Estudante ${student.nome} adicionado com sucesso!`);
   }
 
   private updateStudent(updatedStudent: Student): void {
     this.students = this.students.map(student => 
       student.id === updatedStudent.id ? updatedStudent : student
     );
-    this.showSnackbar(`Estudante ${updatedStudent.name} atualizado com sucesso!`);
+    this.showSnackbar(`Estudante ${updatedStudent.nome} atualizado com sucesso!`);
   }
 
   private generateId(): number {
