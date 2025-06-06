@@ -70,7 +70,7 @@ public class EstudanteService {
         Estudante estudante = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Estudante não encontrado com ID: " + id));
 
-        // Verifica se o CPF foi alterado e se já existe
+        /*// Verifica se o CPF foi alterado e se já existe
         if (!estudante.getCpf().equals(dto.getCpf()) && repository.existsByCpf(dto.getCpf())) {
             throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf());
         }
@@ -80,7 +80,7 @@ public class EstudanteService {
                 !dto.getEmail().equals(estudante.getEmail()) &&
                 repository.existsByEmail(dto.getEmail())) {
             throw new IllegalArgumentException("Email já cadastrado: " + dto.getEmail());
-        }
+        }*/
 
         // Atualiza os campos
         estudante.setCpf(dto.getCpf());

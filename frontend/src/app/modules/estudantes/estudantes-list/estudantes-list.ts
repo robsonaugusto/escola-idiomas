@@ -46,32 +46,7 @@ interface Student {
 })
 export class EstudantesListComponent {
   displayedColumns: string[] = ['nome', 'telefone', 'email', 'cpf', 'actions'];
-  students: Student[] = [
-    { 
-      id: 1, 
-      nome: 'Red Johnson', 
-      telefone: '+55 41 11111-1111', 
-      cpf: '111.111.111-11', 
-      email: 'red@email.com',
-      dataNascimento: '1990-01-01'
-    },
-    { 
-      id: 2, 
-      nome: 'Carlos Silva', 
-      telefone: '+55 41 10336-1038', 
-      cpf: '222.222.222-22', 
-      email: 'carlos@email.com',
-      dataNascimento: '1985-05-15'
-    },
-    { 
-      id: 3, 
-      nome: 'Maria Garcia', 
-      telefone: '+55 41 11333-11337', 
-      cpf: '333.333.333-33', 
-      email: 'maria@email.com',
-      dataNascimento: '1992-11-20'
-    }
-  ];
+  students: Student[] = []; // Array vazio - sem dados fixos
 
   constructor(
     private dialog: MatDialog,
