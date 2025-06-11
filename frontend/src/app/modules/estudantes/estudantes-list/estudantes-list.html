@@ -13,43 +13,43 @@
   <mat-card-content>
     <h3>Lista de Estudantes</h3>
 
-    <table mat-table [dataSource]="students" class="mat-elevation-z8">
+    <table mat-table [dataSource]="estudante" class="mat-elevation-z8">
 
       <!-- Nome -->
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let student"> {{ student.nome }} </td>
+        <td mat-cell *matCellDef="let estudante"> {{ estudante.nome }} </td>
       </ng-container>
 
       <!-- WhatsApp -->
       <ng-container matColumnDef="telefone">
         <th mat-header-cell *matHeaderCellDef> WhatsApp </th>
-        <td mat-cell *matCellDef="let student"> {{ student.telefone }} </td>
+        <td mat-cell *matCellDef="let estudante"> {{ estudante.telefone }} </td>
       </ng-container>
 
       <!-- E-mail -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> E-mail </th>
-        <td mat-cell *matCellDef="let student"> {{ student.email }} </td>
+        <td mat-cell *matCellDef="let estudante"> {{ estudante.email }} </td>
       </ng-container>
 
       <!-- CPF -->
       <ng-container matColumnDef="cpf">
         <th mat-header-cell *matHeaderCellDef> CPF </th>
-        <td mat-cell *matCellDef="let student"> {{ student.cpf }} </td>
+        <td mat-cell *matCellDef="let estudante"> {{ estudante.cpf }} </td>
       </ng-container>
 
       <!-- Ações -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let student">
-          <button mat-icon-button color="primary" (click)="editStudent(student)">
+        <td mat-cell *matCellDef="let estudante">
+          <button mat-icon-button color="primary" (click)="editStudent(estudante)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+          <button mat-icon-button color="warn" (click)="deleteStudent(estudante)">
             <mat-icon>delete</mat-icon>
           </button>
-          <button mat-icon-button color="accent" (click)="scheduleStudent(student)">
+          <button mat-icon-button color="accent" (click)="scheduleStudent(estudante)">
             <mat-icon>date_range</mat-icon>
           </button>
         </td>

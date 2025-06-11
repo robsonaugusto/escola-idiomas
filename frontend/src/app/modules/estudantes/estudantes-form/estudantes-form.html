@@ -8,7 +8,7 @@
       <input 
         matInput 
         name="cpf" 
-        [(ngModel)]="student.cpf" 
+        [(ngModel)]="estudante.cpf" 
         required 
         #cpfField="ngModel"
         [disabled]="isLoading"
@@ -24,7 +24,7 @@
       <input 
         matInput 
         name="nome" 
-        [(ngModel)]="student.nome" 
+        [(ngModel)]="estudante.nome" 
         required 
         #nomeField="ngModel"
         [disabled]="isLoading"
@@ -40,7 +40,7 @@
       <input 
         matInput 
         name="dataNascimento" 
-        [(ngModel)]="student.dataNascimento" 
+        [(ngModel)]="estudante.dataNascimento" 
         type="date"
         [disabled]="isLoading" />
     </mat-form-field>
@@ -51,7 +51,7 @@
       <input 
         matInput 
         name="cep" 
-        [(ngModel)]="student.cep" 
+        [(ngModel)]="estudante.cep" 
         [disabled]="isLoading"
         placeholder="00000-000" />
     </mat-form-field>
@@ -62,7 +62,7 @@
       <input 
         matInput 
         name="logradouro" 
-        [(ngModel)]="student.logradouro" 
+        [(ngModel)]="estudante.logradouro" 
         [disabled]="isLoading"
         placeholder="Rua, Avenida, etc." />
     </mat-form-field>
@@ -73,7 +73,7 @@
       <input 
         matInput 
         name="numeroCasa" 
-        [(ngModel)]="student.numeroCasa" 
+        [(ngModel)]="estudante.numeroCasa" 
         [disabled]="isLoading"
         placeholder="Número da residência" />
     </mat-form-field>
@@ -84,7 +84,7 @@
       <input 
         matInput 
         name="bairro" 
-        [(ngModel)]="student.bairro" 
+        [(ngModel)]="estudante.bairro" 
         [disabled]="isLoading" />
     </mat-form-field>
 
@@ -94,7 +94,7 @@
       <input 
         matInput 
         name="estado" 
-        [(ngModel)]="student.estado" 
+        [(ngModel)]="estudante.estado" 
         [disabled]="isLoading"
         placeholder="Ex: São Paulo, Rio de Janeiro" />
     </mat-form-field>
@@ -105,7 +105,7 @@
       <input 
         matInput 
         name="cidade" 
-        [(ngModel)]="student.cidade" 
+        [(ngModel)]="estudante.cidade" 
         [disabled]="isLoading" />
     </mat-form-field>
 
@@ -115,7 +115,7 @@
       <input 
         matInput 
         name="telefone" 
-        [(ngModel)]="student.telefone" 
+        [(ngModel)]="estudante.telefone" 
         [disabled]="isLoading"
         placeholder="(00) 00000-0000" />
     </mat-form-field>
@@ -126,7 +126,7 @@
       <input 
         matInput 
         name="email" 
-        [(ngModel)]="student.email" 
+        [(ngModel)]="estudante.email" 
         type="email"
         required
         #emailField="ngModel"

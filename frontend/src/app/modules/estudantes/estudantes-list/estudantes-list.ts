@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EstudantesFormComponent } from '../estudantes-form/estudantes-form';
+import { EstudantesService } from '../../../core/services/estudantes';
 
-interface Student {
+interface Estudante {
   id?: number;
   nome: string;
   telefone: string;
@@ -38,49 +39,62 @@ interface Student {
     MatTooltipModule,
     MatDialogModule,
     MatSnackBarModule
-  ],
-  providers: [
-    { provide: MatDialogRef, useValue: {} },
-    { provide: MAT_DIALOG_DATA, useValue: {} }
   ]
+  // Removidos todos os providers - eles não são necessários aqui
 })
-export class EstudantesListComponent {
+export class EstudantesListComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'telefone', 'email', 'cpf', 'actions'];
-  students: Student[] = []; // Array vazio - sem dados fixos
+  estudante: Estudante[] = [];
 
   constructor(
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private estudantesService: EstudantesService
   ) {}
+
+  ngOnInit(): void {
+    this.carregarEstudantes();
+  }
+
+  carregarEstudantes(): void {
+    this.estudantesService.getEstudantes().subscribe({
+      next: (estudantes) => {
+        this.estudante = estudantes;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar estudantes:', error);
+        this.showSnackbar('Erro ao carregar estudantes');
+      }
+    });
+  }
 
   addNewStudent(): void {
     this.openStudentDialog('create');
   }
 
-  editStudent(student: Student): void {
-    this.openStudentDialog('edit', student);
+  editStudent(estudante: Estudante): void {
+    this.openStudentDialog('edit', estudante);
   }
 
-  deleteStudent(student: Student): void {
-    const confirmDelete = confirm(`Deseja realmente excluir o estudante ${student.nome}?`);
+  deleteStudent(estudante: Estudante): void {
+    const confirmDelete = confirm(`Deseja realmente excluir o estudante ${estudante.nome}?`);
     
     if (confirmDelete) {
-      this.students = this.students.filter(s => s.id !== student.id);
-      this.showSnackbar(`Estudante ${student.nome} excluído com sucesso!`);
+      this.estudante = this.estudante.filter(s => s.id !== estudante.id);
+      this.showSnackbar(`Estudante ${estudante.nome} excluído com sucesso!`);
     }
   }
 
-  scheduleStudent(student: Student): void {
-    this.showSnackbar(`Agendamento para ${student.nome} criado com sucesso!`);
-    // Implemente a lógica de agendamento aqui
+  scheduleStudent(estudante: Estudante): void {
+    this.showSnackbar(`Agendamento para ${estudante.nome} criado com sucesso!`);
   }
 
-  private openStudentDialog(mode: 'create' | 'edit', student?: Student): void {
+  private openStudentDialog(mode: 'create' | 'edit', estudante?: Estudante): void {
     const dialogRef = this.dialog.open(EstudantesFormComponent, {
       width: '800px',
       data: {
         mode: mode,
-        student: student ? { ...student } : this.createEmptyStudent()
+        estudante: estudante ? { ...estudante } : this.createEmptyStudent()
       }
     });
 
@@ -95,7 +109,7 @@ export class EstudantesListComponent {
     });
   }
 
-  private createEmptyStudent(): Student {
+  private createEmptyStudent(): Estudante {
     return {
       nome: '',
       telefone: '',
@@ -111,22 +125,22 @@ export class EstudantesListComponent {
     };
   }
 
-  private addStudent(student: Student): void {
-    student.id = this.generateId();
-    this.students = [...this.students, student];
-    this.showSnackbar(`Estudante ${student.nome} adicionado com sucesso!`);
+  private addStudent(estudante: Estudante): void {
+    estudante.id = this.generateId();
+    this.estudante = [...this.estudante, estudante];
+    this.showSnackbar(`Estudante ${estudante.nome} adicionado com sucesso!`);
   }
 
-  private updateStudent(updatedStudent: Student): void {
-    this.students = this.students.map(student => 
-      student.id === updatedStudent.id ? updatedStudent : student
+  private updateStudent(updatedStudent: Estudante): void {
+    this.estudante = this.estudante.map(estudante => 
+      estudante.id === updatedStudent.id ? updatedStudent : estudante
     );
     this.showSnackbar(`Estudante ${updatedStudent.nome} atualizado com sucesso!`);
   }
 
   private generateId(): number {
-    return this.students.length > 0 
-      ? Math.max(...this.students.map(s => s.id || 0)) + 1 
+    return this.estudante.length > 0 
+      ? Math.max(...this.estudante.map(s => s.id || 0)) + 1 
       : 1;
   }
 

@@ -33,7 +33,7 @@ export class EstudantesFormComponent {
   public estudantesService = inject(EstudantesService);
   public snackBar = inject(MatSnackBar);
 
-  student: Estudante = {
+  estudante: Estudante = {
     cpf: '',
     nome: '',
     dataNascimento: '',
@@ -52,7 +52,7 @@ export class EstudantesFormComponent {
   constructor() {
     // Inicialização movida para o constructor sem parâmetros
     if (this.data?.student) {
-      this.student = { ...this.data.student };
+      this.estudante = { ...this.data.student };
     }
   }
 
@@ -60,9 +60,9 @@ export class EstudantesFormComponent {
     if (this.isFormValid()) {
       this.isLoading = true;
       
-      if (this.data?.mode === 'edit' && this.student.id) {
+      if (this.data?.mode === 'edit' && this.estudante.id) {
         // Modo edição - usar PUT
-        this.estudantesService.updateEstudante(this.student.id, this.student)
+        this.estudantesService.updateEstudante(this.estudante.id, this.estudante)
           .subscribe({
             next: (estudanteAtualizado) => {
               this.showSuccess('Estudante atualizado com sucesso!');
@@ -77,7 +77,7 @@ export class EstudantesFormComponent {
           });
       } else {
         // Modo criação - usar POST
-        this.estudantesService.createEstudante(this.student)
+        this.estudantesService.createEstudante(this.estudante)
           .subscribe({
             next: (novoEstudante) => {
               this.showSuccess('Estudante criado com sucesso!');
@@ -99,7 +99,7 @@ export class EstudantesFormComponent {
   }
 
   public isFormValid(): boolean {
-    return !!this.student.nome && !!this.student.cpf && !!this.student.email;
+    return !!this.estudante.nome && !!this.estudante.cpf && !!this.estudante.email;
   }
 
   private showSuccess(message: string) {
