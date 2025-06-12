@@ -12,6 +12,7 @@ bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), // Forma alternativa
-    importProvidersFrom(BrowserAnimationsModule)
+    importProvidersFrom(BrowserAnimationsModule),
+    
   ]
 }).catch(err => console.error(err));

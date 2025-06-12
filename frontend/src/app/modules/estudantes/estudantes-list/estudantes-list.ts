@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -49,7 +49,8 @@ export class EstudantesListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private estudantesService: EstudantesService
+    private estudantesService: EstudantesService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +61,7 @@ export class EstudantesListComponent implements OnInit {
     this.estudantesService.getEstudantes().subscribe({
       next: (estudantes) => {
         this.estudante = estudantes;
+        this.cdr.detectChanges(); // Notifica explicitamente o Angular sobre a mudança
       },
       error: (error) => {
         console.error('Erro ao carregar estudantes:', error);
