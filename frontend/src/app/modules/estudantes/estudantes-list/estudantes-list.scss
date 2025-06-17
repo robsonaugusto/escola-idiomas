@@ -1,49 +1,78 @@
 .student-card {
-  margin: 2rem;
-  padding: 1.5rem;
+  margin: 1rem auto; // Centraliza o card
+  padding: 1rem;
   background-color: #fefefe;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 8px rgba(0, 0, 0, 0.05);
+  max-width: 1600px; // Limita a largura máxima
+  width: 90%; // Usa 90% da tela disponível
 
   mat-card-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: #333;
   }
 
   mat-card-actions {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 1rem;
-    gap: 1rem;
+    margin-bottom: 0.75rem;
+    gap: 0.75rem;
   }
 
   table {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem; // Texto menor
+    table-layout: fixed; // Força o controle das larguras das colunas
 
     th {
       font-weight: 600;
       background-color: #f5f5f5;
       color: #444;
+      font-size: 0.8rem; // Cabeçalhos ainda menores
     }
 
     td, th {
-      padding: 0.75rem;
+      padding: 0.5rem 0.75rem; // Padding reduzido
       text-align: left;
+      line-height: 1.3; // Altura de linha menor
     }
 
     tr:hover {
       background-color: #f9f9f9;
+    }
+
+    // Colunas com larguras específicas para economizar espaço
+    th:nth-child(1), td:nth-child(1) { // Nome
+      width: 25%;
+    }
+    
+    th:nth-child(2), td:nth-child(2) { // WhatsApp
+      width: 15%;
+    }
+    
+    th:nth-child(3), td:nth-child(3) { // E-mail
+      width: 30%;
+    }
+    
+    th:nth-child(4), td:nth-child(4) { // CPF
+      width: 20%;
+    }
+    
+    th:nth-child(5), td:nth-child(5) { // Ações
+      width: 10%;
+      text-align: center;
     }
   }
 
   .footer-links {
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
 
     a {
       color: #007bff;

@@ -51,8 +51,8 @@ export class EstudantesFormComponent {
 
   constructor() {
     // Inicialização movida para o constructor sem parâmetros
-    if (this.data?.student) {
-      this.estudante = { ...this.data.student };
+    if (this.data?.estudante) {
+      this.estudante = { ...this.data.estudante };
     }
   }
 
