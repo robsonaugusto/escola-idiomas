@@ -7,7 +7,7 @@
     <button mat-raised-button color="primary" (click)="addNewStudent()">
       <mat-icon>person_add</mat-icon>
       Adicionar Estudante
-    </button>    
+    </button>
   </mat-card-actions>
 
   <mat-card-content>
@@ -24,7 +24,11 @@
       <!-- WhatsApp -->
       <ng-container matColumnDef="telefone">
         <th mat-header-cell *matHeaderCellDef> WhatsApp </th>
-        <td mat-cell *matCellDef="let estudante"> {{ estudante.telefone }} </td>
+        <td mat-cell *matCellDef="let estudante">
+          <a [href]="'https://api.whatsapp.com/send/?phone=' + estudante.telefone" target="_blank">
+            {{ estudante.telefone }}
+          </a>
+        </td>
       </ng-container>
 
       <!-- E-mail -->

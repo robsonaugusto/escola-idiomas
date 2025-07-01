@@ -79,13 +79,20 @@ export class EstudantesListComponent implements OnInit {
   }
 
   deleteStudent(estudante: Estudante): void {
-    const confirmDelete = confirm(`Deseja realmente excluir o estudante ${estudante.nome}?`);
-    
-    if (confirmDelete) {
-      this.estudante = this.estudante.filter(s => s.id !== estudante.id);
-      this.showSnackbar(`Estudante ${estudante.nome} excluído com sucesso!`);
-    }
+  if (confirm(`Deseja realmente excluir o estudante ${estudante.nome}?`)) {
+    this.estudantesService.deleteEstudante(estudante.id!).subscribe({
+      next: () => {
+        this.estudante = this.estudante.filter(s => s.id !== estudante.id);
+        this.showSnackbar(`Estudante ${estudante.nome} excluído com sucesso!`);
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.showSnackbar('Erro ao excluir estudante.');
+        console.error(err);
+      }
+    });
   }
+}
 
   scheduleStudent(estudante: Estudante): void {
     this.showSnackbar(`Agendamento para ${estudante.nome} criado com sucesso!`);
