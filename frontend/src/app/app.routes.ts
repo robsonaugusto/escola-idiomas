@@ -18,6 +18,11 @@ export const routes: Routes = [
         loadComponent: () => 
           import('./modules/estudantes/estudantes-list/estudantes-list').then(m => m.EstudantesListComponent),
         title: 'Gestão de Estudantes'
+      },
+      { 
+        path: 'professores', 
+        // Supondo que ProfessoresListComponent seja standalone
+        loadComponent: () => import('./modules/professores/professores-list/professores-list').then(m => m.ProfessoresList) 
       }
     ]
   },

@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Bem-vindo, Professor!</h2>
+  <div class="dash-row">
+    <div class="dash-col">
+      <h3>Aulas do Dia</h3>
+      @for (aula of aulasDoDia; track aula.id) {
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ aula.estudante.nome }}</mat-card-title>
+            <mat-card-subtitle>Data: {{ aula.dataHora | date:'dd/MM/yyyy HH:mm' }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button color="primary">Realizar Aula</button>
+            <a mat-button [href]="'https://api.whatsapp.com/send/?phone=' + aula.estudante.whatsapp" target="_blank">WhatsApp</a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+
+    <div class="dash-col">
+      <h3>Histórico de Aulas</h3>
+      @for (aula of historico; track aula.id) {
+        <mat-card>
+          </mat-card>
+      }
+    </div>
+  </div>
+</div>
